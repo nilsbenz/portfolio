@@ -1,0 +1,41 @@
+---
+import { MoonIcon, SunIcon } from "lucide-react";
+---
+
+<theme-toggle>
+  <button
+    class="focus-visible:ring-ring group ring-offset-background relative flex size-9 shrink-0 cursor-pointer items-center justify-center gap-2 overflow-clip rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+  >
+    <span class="sr-only">Dark theme</span>
+    <SunIcon
+      className="ease-out-expo stroke-2.25 size-5 origin-[2.25rem_50%] transition-all duration-1000 not-dark:group-hover:rotate-9 dark:rotate-90 dark:opacity-60"
+    />
+    <MoonIcon
+      className="ease-out-expo stroke-2.25 absolute size-5 origin-[2.25rem_50%] -rotate-90 opacity-60 transition-all duration-1000 dark:rotate-0 dark:opacity-100 dark:group-hover:-rotate-9"
+    />
+  </button>
+</theme-toggle>
+
+<script>
+  class ThemeToggle extends HTMLElement {
+    constructor() {
+      super();
+
+      const button = this.querySelector("button")!;
+
+      function setTheme(dark: boolean) {
+        document.documentElement.classList[dark ? "add" : "remove"]("dark");
+        button.setAttribute("aria-pressed", String(dark));
+      }
+
+      button.addEventListener("click", () => setTheme(!this.isDark()));
+
+      setTheme(this.isDark());
+    }
+
+    isDark() {
+      return document.documentElement.classList.contains("dark");
+    }
+  }
+  customElements.define("theme-toggle", ThemeToggle);
+</script>

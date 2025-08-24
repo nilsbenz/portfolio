@@ -1,0 +1,37 @@
+---
+import BottomNavigation from "@/components/layout/BottomNavigation.astro";
+import Header from "@/components/layout/Header.astro";
+import MainHead from "@/components/meta/MainHead.astro";
+import { getLang } from "@/i18n/utils";
+
+interface Props {
+  title?: string | undefined;
+  description?: string | undefined;
+}
+
+const { title, description } = Astro.props;
+const lang = getLang(Astro.currentLocale, Astro.url);
+---
+
+<html lang={lang}>
+  <head>
+    <MainHead title={title} description={description} />
+  </head>
+  <body>
+    <Header />
+    <div class="dotted-bg absolute top-0 -z-10 h-[40vh] w-full overflow-clip">
+      <div
+        class="from-background via-background ease-out-expo absolute top-0 left-0 h-[200%] w-full bg-radial via-20% transition-colors duration-700"
+      >
+      </div>
+      <div
+        class="from-background ease-out-expo absolute inset-0 bg-linear-0 transition-colors duration-700"
+      >
+      </div>
+    </div>
+    <div class="mx-auto w-full max-w-4xl px-4 py-12">
+      <slot />
+    </div>
+    <BottomNavigation />
+  </body>
+</html>

@@ -1,0 +1,19 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+const locale = Astro.currentLocale;
+const pathname = Astro.originPathname.replace("/" + locale, "");
+---
+
+<language-toggle>
+  <a
+    href={getRelativeLocaleUrl(locale === "de" ? "en" : "de", pathname)}
+    class="focus-visible:ring-ring group ring-offset-background relative flex size-9 shrink-0 cursor-pointer items-center justify-center gap-2 overflow-clip rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+    data-lang={locale}
+  >
+    <span class="sr-only">Language</span>
+    <span
+      class="ease-out-expo origin-[2.25rem_50%] transition-transform duration-1000 group-hover:rotate-9 group-data-[lang=en]:group-hover:-rotate-9"
+      >{locale === "en" ? "EN" : "DE"}</span
+    >
+  </a>
+</language-toggle>

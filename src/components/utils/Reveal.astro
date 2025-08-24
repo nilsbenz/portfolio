@@ -1,0 +1,19 @@
+---
+interface Props {
+  content: string;
+}
+
+const { content } = Astro.props;
+---
+
+{
+  content
+    .split("")
+    .map((char, index) => (
+      <span
+        style={{ "animation-delay": `calc(${index} * 30ms)` }}
+        class="animate-reveal inline-block"
+        set:html={char === " " ? "&nbsp;" : char}
+      />
+    ))
+}

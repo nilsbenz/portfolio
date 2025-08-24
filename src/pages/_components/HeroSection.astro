@@ -1,0 +1,55 @@
+---
+import profileImage from "@/assets/profile.jpg";
+import Reveal from "@/components/utils/Reveal.astro";
+import { getLang, useTranslations } from "@/i18n/utils";
+import { Image } from "astro:assets";
+import { CameraIcon, Code2Icon } from "lucide-react";
+
+const lang = getLang(Astro.currentLocale, Astro.url);
+const t = useTranslations(lang);
+---
+
+<div class="grid grid-cols-1 gap-x-8 gap-y-12 py-12 md:grid-cols-2 md:gap-y-8">
+  <div class="flex flex-col justify-end gap-8 max-md:text-center">
+    <h2 class="overflow-hidden text-4xl font-bold text-balance sm:text-5xl">
+      <Reveal content={t("hero.title")} />
+    </h2>
+    <ul class="list-none text-lg max-md:hidden">
+      {
+        [
+          { icon: Code2Icon, label: "hero.dev" },
+          { icon: CameraIcon, label: "hero.filmmaker" },
+        ].map(({ icon: Icon, label }) => (
+          <li class="flex items-center gap-2">
+            <Icon
+              className="text-primary size-5 transition-colors duration-700 ease-out-expo"
+              strokeWidth={2.75}
+            />{" "}
+            {t(label)}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <div class="mx-auto w-full max-md:max-w-sm md:col-start-2 md:row-span-2">
+    <div class="relative mx-12 md:mx-0">
+      <div
+        class="liquid-glass-border bg-glass ease-out-expo group absolute top-1/6 left-0 flex size-12 -translate-x-1/2 items-center justify-center rounded-full border-dashed text-2xl shadow-lg backdrop-blur transition-all duration-700"
+      >
+        <span class="group-hover:animate-wiggle origin-bottom-right">👋</span>
+      </div>
+      <Image
+        src={profileImage}
+        alt="Profile image of Nils Benz"
+        class="bg-secondary aspect-[3/4] w-full rounded-md shadow-lg [&:hover_+_div]:translate-x-3 [&:hover_+_div]:translate-y-3"
+      />
+      <div
+        class="ease-out-expo bg-background absolute inset-0 -z-10 translate-x-1.5 translate-y-1.5 rounded-md border-2 border-dashed transition-all duration-700"
+      >
+      </div>
+    </div>
+  </div>
+  <p class="text-muted-foreground text-balance max-md:text-center">
+    {t("hero.description")}
+  </p>
+</div>
