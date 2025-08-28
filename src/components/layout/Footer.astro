@@ -1,0 +1,58 @@
+---
+import {
+  GithubIcon,
+  InstagramIcon,
+  LinkedinIcon,
+  YoutubeIcon,
+} from "lucide-react";
+import { buttonVariants } from "../ui/button";
+---
+
+<footer
+  class="ease-out-expo border-t-2 border-dashed transition-colors duration-700"
+>
+  <div
+    class="mx-auto flex w-full max-w-4xl flex-wrap justify-between gap-x-4 gap-y-2 px-4 pt-8 pb-6"
+  >
+    <div class="flex items-center gap-1">
+      <img src="/favicon.svg" class="size-10" />
+      <div>
+        <p class="text-lg leading-4 font-bold">nilsbenz.ch</p>
+        <p class="text-xs leading-4">
+          © {new Date().getFullYear()}. All rights reserved.
+        </p>
+      </div>
+    </div>
+    <div class="flex gap-1">
+      <a
+        href="https://instagram.com/bnznils"
+        target="_blank"
+        class={buttonVariants({ variant: "ghost", size: "icon" })}
+      >
+        <InstagramIcon />
+      </a>
+      <a
+        href="https://youtube.com/@nilsbenz"
+        target="_blank"
+        class={buttonVariants({ variant: "ghost", size: "icon" })}
+      >
+        <YoutubeIcon />
+      </a>
+      <a
+        href="https://www.linkedin.com/in/nils-benz-456293238/"
+        target="_blank"
+        class={buttonVariants({ variant: "ghost", size: "icon" })}
+      >
+        <LinkedinIcon />
+      </a>
+      <a
+        href="https://github.com/nilsbenz"
+        target="_blank"
+        class={buttonVariants({ variant: "ghost", size: "icon" })}
+      >
+        <GithubIcon />
+      </a>
+    </div>
+  </div>
+  <slot />
+</footer>

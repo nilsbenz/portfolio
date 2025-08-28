@@ -1,7 +1,9 @@
 ---
 import { getLang, useTranslations } from "@/i18n/utils";
+import { cn } from "@/lib/utils";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { ChevronRightIcon, GithubIcon } from "lucide-react";
+import { buttonVariants } from "../ui/button";
 import LanguageToggle from "./LanguageToggle.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 
@@ -11,7 +13,7 @@ const t = useTranslations(lang);
 
 <header class="w-full text-sm font-semibold">
   <div
-    class="fixed top-0 right-0 left-0 z-30 mx-auto flex h-14 w-full items-center justify-between pr-2 pb-0.5 pl-2.5 lg:max-w-5xl"
+    class="fixed top-0 right-0 left-0 z-30 mx-auto flex h-14 w-full items-center justify-between pr-1.5 pb-0.5 pl-2.5 lg:max-w-5xl"
   >
     <div
       id="header-bg"
@@ -20,17 +22,20 @@ const t = useTranslations(lang);
     </div>
     <a
       href={getRelativeLocaleUrl(lang, "/")}
-      class="focus-visible:ring-ring ring-offset-background flex h-9 items-center gap-0.5 truncate rounded-full pr-2.5 pl-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+      class="focus-visible:ring-ring/50 flex h-9 items-center gap-0.5 truncate rounded-full pr-2.5 pl-1 focus:outline-none focus-visible:ring-3"
     >
       <ChevronRightIcon className="text-primary size-5 shrink-0 stroke-3" />
       <h1 class="truncate text-lg font-semibold">nilsbenz</h1>
     </a>
-    <nav class="flex items-center gap-5">
-      <ul class="hidden items-center gap-2 md:flex">
+    <nav class="flex items-center gap-4">
+      <ul class="hidden items-center gap-1 md:flex">
         <li>
           <a
             href={getRelativeLocaleUrl(lang, "/")}
-            class="focus-visible:ring-ring ring-offset-background flex h-9 items-center rounded-full px-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+            class={cn(
+              buttonVariants({ variant: "ghost" }),
+              "hover:bg-accent/60"
+            )}
           >
             {t("nav.home")}
           </a>
@@ -38,7 +43,10 @@ const t = useTranslations(lang);
         <li>
           <a
             href={getRelativeLocaleUrl(lang, "/projects/")}
-            class="focus-visible:ring-ring ring-offset-background flex h-9 items-center rounded-full px-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+            class={cn(
+              buttonVariants({ variant: "ghost" }),
+              "hover:bg-accent/60"
+            )}
           >
             {t("nav.projects")}
           </a>
@@ -46,7 +54,10 @@ const t = useTranslations(lang);
         <li>
           <a
             href={getRelativeLocaleUrl(lang, "/about/")}
-            class="focus-visible:ring-ring ring-offset-background flex h-9 items-center rounded-full px-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+            class={cn(
+              buttonVariants({ variant: "ghost" }),
+              "hover:bg-accent/60"
+            )}
           >
             {t("nav.about")}
           </a>
@@ -54,16 +65,19 @@ const t = useTranslations(lang);
       </ul>
       <div
         id="header-controls"
-        class="liquid-glass-border ease-out-expo flex h-10 items-center gap-0.5 rounded-full px-1 transition-all duration-700"
+        class="liquid-glass-border ease-out-expo flex items-center gap-0.5 rounded-full p-[3px] transition-all duration-700"
       >
-        <LanguageToggle />
+        <LanguageToggle client:load />
         <ThemeToggle />
         <a
           href="https://github.com/nilsbenz/portfolio"
           target="_blank"
-          class="focus-visible:ring-ring ring-offset-background flex size-9 cursor-pointer items-center justify-center rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+          class={cn(
+            buttonVariants({ variant: "ghost", size: "icon" }),
+            "hover:bg-accent/60"
+          )}
         >
-          <GithubIcon className="stroke-2.25 size-5" />
+          <GithubIcon />
         </a>
       </div>
     </nav>

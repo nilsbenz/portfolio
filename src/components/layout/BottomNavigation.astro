@@ -45,7 +45,7 @@ const activeItem = navItems
               <a
                 href={element.path}
                 class={cn(
-                  "focus-visible:ring-ring focus-visible:ring-offset-background ease-out-expo flex h-full flex-col items-center justify-center gap-0.5 rounded-full px-3 text-xs font-semibold transition-colors duration-700 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
+                  "focus-visible:ring-ring/50 ease-out-expo flex h-full flex-col items-center justify-center gap-0.5 rounded-full px-3 text-xs font-semibold transition-colors duration-700 focus:outline-none focus-visible:ring-3",
                   isActive &&
                     "liquid-glass-border bg-foreground/5 dark:bg-foreground/7.5 text-primary font-semibold"
                 )}
@@ -65,7 +65,7 @@ const activeItem = navItems
     </ul>
   </nav>
   <div
-    class="from-background/30 absolute inset-0 -z-10 bg-gradient-to-t backdrop-blur-sm"
+    class="from-background/40 absolute inset-0 -z-10 bg-gradient-to-t backdrop-blur-xs"
     style={{
       maskImage: "linear-gradient(to top, black 1.25rem, transparent 100%)",
     }}

@@ -1,15 +1,18 @@
 ---
 import BottomNavigation from "@/components/layout/BottomNavigation.astro";
+import Footer from "@/components/layout/Footer.astro";
 import Header from "@/components/layout/Header.astro";
 import MainHead from "@/components/meta/MainHead.astro";
 import { getLang } from "@/i18n/utils";
+import { cn } from "@/lib/utils";
 
 interface Props {
   title?: string | undefined;
   description?: string | undefined;
+  className?: string | undefined;
 }
 
-const { title, description } = Astro.props;
+const { title, description, className } = Astro.props;
 const lang = getLang(Astro.currentLocale, Astro.url);
 ---
 
@@ -17,7 +20,7 @@ const lang = getLang(Astro.currentLocale, Astro.url);
   <head>
     <MainHead title={title} description={description} />
   </head>
-  <body>
+  <body class="flex min-h-svh flex-col">
     <Header />
     <div class="dotted-bg absolute top-0 -z-10 h-[40vh] w-full overflow-clip">
       <div
@@ -29,9 +32,9 @@ const lang = getLang(Astro.currentLocale, Astro.url);
       >
       </div>
     </div>
-    <div class="mx-auto w-full max-w-4xl px-4 py-12">
+    <div class={cn("mx-auto w-full max-w-4xl px-4 py-12 grow", className)}>
       <slot />
     </div>
-    <BottomNavigation />
+    <Footer><BottomNavigation /></Footer>
   </body>
 </html>

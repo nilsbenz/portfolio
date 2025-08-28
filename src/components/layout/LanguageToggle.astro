@@ -1,19 +1,26 @@
 ---
+import { cn } from "@/lib/utils";
 import { getRelativeLocaleUrl } from "astro:i18n";
+import { buttonVariants } from "../ui/button";
 const locale = Astro.currentLocale;
 const pathname = Astro.originPathname.replace("/" + locale, "");
+const otherLangUrl = getRelativeLocaleUrl(
+  locale === "de" ? "en" : "de",
+  pathname
+);
 ---
 
-<language-toggle>
-  <a
-    href={getRelativeLocaleUrl(locale === "de" ? "en" : "de", pathname)}
-    class="focus-visible:ring-ring group ring-offset-background relative flex size-9 shrink-0 cursor-pointer items-center justify-center gap-2 overflow-clip rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-    data-lang={locale}
+<button
+  onclick={`location.replace(${JSON.stringify(otherLangUrl)})`}
+  class={cn(
+    buttonVariants({ variant: "ghost", size: "icon" }),
+    "group relative overflow-clip hover:bg-accent/60"
+  )}
+  data-lang={locale}
+>
+  <span class="sr-only">Language</span>
+  <span
+    class="ease-out-expo origin-[2.25rem_50%] transition-transform duration-1000 group-hover:rotate-9 group-data-[lang=en]:group-hover:-rotate-9"
+    >{locale === "en" ? "EN" : "DE"}</span
   >
-    <span class="sr-only">Language</span>
-    <span
-      class="ease-out-expo origin-[2.25rem_50%] transition-transform duration-1000 group-hover:rotate-9 group-data-[lang=en]:group-hover:-rotate-9"
-      >{locale === "en" ? "EN" : "DE"}</span
-    >
-  </a>
-</language-toggle>
+</button>
