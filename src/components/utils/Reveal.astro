@@ -7,13 +7,22 @@ const { content } = Astro.props;
 ---
 
 {
-  content
-    .split("")
-    .map((char, index) => (
-      <span
-        style={{ "animation-delay": `calc(${index} * 30ms)` }}
-        class="animate-reveal inline-block"
-        set:html={char === " " ? "&nbsp;" : char}
-      />
-    ))
+  (() => {
+    let charIndex = 0;
+    return content.split(" ").map((word, wordIndex) => (
+      <Fragment>
+        {wordIndex > 0 && " "}
+        <span class="inline-block whitespace-nowrap">
+          {word.split("").map((char) => (
+            <span
+              style={{ "animation-delay": `calc(${charIndex++} * 30ms)` }}
+              class="animate-reveal inline-block"
+            >
+              {char}
+            </span>
+          ))}
+        </span>
+      </Fragment>
+    ));
+  })()
 }
