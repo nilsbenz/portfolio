@@ -7,6 +7,8 @@ export const defaultLang = "de";
 
 export const ui: Record<keyof typeof languages, Record<string, string>> = {
   de: {
+    "meta.description":
+      "Hey, ich bin Nils, komme aus dem St. Galler Rheintal und bin Softwareentwickler und Filmemacher.",
     "nav.home": "Home",
     "nav.projects": "Projekte",
     "nav.about": "Über mich",

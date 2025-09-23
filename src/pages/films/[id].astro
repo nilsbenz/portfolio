@@ -1,0 +1,31 @@
+---
+import FilmLayout from "@/layouts/FilmLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const films = await getCollection("films");
+  return films.map((film) => {
+    return {
+      params: { id: film.id },
+      props: film.data,
+    };
+  });
+}
+
+const { title, seoDescription, embed, aspectRatio = "16 / 9" } = Astro.props;
+---
+
+<FilmLayout title={title} description={seoDescription}>
+  <div class="space-y-12">
+    <h2 class="title">{title}</h2>
+    <iframe
+      src={embed}
+      title={title}
+      frameborder="0"
+      allow="picture-in-picture"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+      class="w-full"
+      style={{ aspectRatio }}></iframe>
+  </div>
+</FilmLayout>

@@ -1,0 +1,19 @@
+---
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const films = (await getCollection("films")).filter(
+    (film) => !!film.data.rewrite
+  );
+  return films.map((film) => {
+    return {
+      params: { id: film.data.rewrite },
+      props: { id: film.id },
+    };
+  });
+}
+
+const { id } = Astro.props;
+---
+
+<meta http-equiv="refresh" content={`0;url=/films/${id}`} />

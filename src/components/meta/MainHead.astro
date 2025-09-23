@@ -1,19 +1,22 @@
 ---
-import "@fontsource-variable/outfit";
+import { getLang, useTranslations } from "@/i18n/utils";
 import "@/styles/global.css";
+import "@fontsource-variable/outfit";
 
 interface Props {
   title?: string | undefined;
   description?: string | undefined;
 }
 
-const {
-  title = "Nils Benz",
-  description = "Hallo, ich bin Nils, komme aus dem St. Galler Rheintal und bin Softwareentwickler und Filmemacher.",
-} = Astro.props;
+const lang = getLang(Astro.currentLocale, Astro.url);
+const t = useTranslations(lang);
+
+const { title = "Nils Benz", description = t("meta.description") } =
+  Astro.props;
 ---
 
 <meta charset="UTF-8" />
+<meta name="title" property="og:title" content={title} />
 <meta name="description" property="og:description" content={description} />
 <meta name="viewport" content="width=device-width" />
 <meta name="generator" content={Astro.generator} />

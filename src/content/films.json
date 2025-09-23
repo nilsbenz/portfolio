@@ -1,0 +1,23 @@
+[
+  {
+    "id": "fabiolaundandreas",
+    "title": "Fabiola und Andreas",
+    "seoDescription": "Hochzeitsvideo von Fabiola und Andreas - 1. Juni 2019",
+    "embed": "https://www.youtube.com/embed/KnJnISVnktk",
+    "rewrite": "fabiolaundandreas"
+  },
+  {
+    "id": "karinundfranz",
+    "title": "Karin und Franz",
+    "seoDescription": "Hochzeitsvideo von Karin und Franz - 17. April 2021",
+    "embed": "https://www.youtube.com/embed/XCsup5LTl5w",
+    "rewrite": "karinundfranz"
+  },
+  {
+    "id": "rabeaundfabio",
+    "title": "Rabea und Fabio",
+    "seoDescription": "Hochzeitsvideo von Rabea und Fabio - 19. September 2020",
+    "embed": "https://www.youtube.com/embed/OQ4tOQyUIdM",
+    "rewrite": "rabeaundfabio"
+  }
+]
