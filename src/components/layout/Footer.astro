@@ -3,9 +3,11 @@ import {
   GithubIcon,
   InstagramIcon,
   LinkedinIcon,
+  MailIcon,
   YoutubeIcon,
 } from "lucide-react";
 import { buttonVariants } from "../ui/button";
+import { EMAIL } from "@/lib/constants";
 ---
 
 <footer
@@ -25,6 +27,13 @@ import { buttonVariants } from "../ui/button";
     </div>
     <div class="flex gap-1">
       <a
+        href={`mailto:${EMAIL}`}
+        target="_blank"
+        class={buttonVariants({ variant: "ghost", size: "icon" })}
+      >
+        <MailIcon />
+      </a>
+      <a
         href="https://instagram.com/bnznils"
         target="_blank"
         class={buttonVariants({ variant: "ghost", size: "icon" })}
@@ -39,7 +48,7 @@ import { buttonVariants } from "../ui/button";
         <YoutubeIcon />
       </a>
       <a
-        href="https://www.linkedin.com/in/nils-benz-456293238/"
+        href="https://www.linkedin.com/in/nilsbenz"
         target="_blank"
         class={buttonVariants({ variant: "ghost", size: "icon" })}
       >

@@ -1,11 +1,159 @@
 ---
+import aboutImage from "@/assets/about/about.jpg";
+import adcubum from "@/assets/icons/adcubum.svg";
+import bstell from "@/assets/icons/bstell.svg";
+import ethz from "@/assets/icons/ethz.svg";
+import ubique from "@/assets/icons/ubique.svg";
 import { getLang, useTranslations } from "@/i18n/utils";
 import MainLayout from "@/layouts/MainLayout.astro";
+import { EMAIL } from "@/lib/constants";
+import { cn } from "@/lib/utils";
+import { Image } from "astro:assets";
 
 const lang = getLang(Astro.currentLocale, Astro.url);
 const t = useTranslations(lang);
+
+const experience = [
+  {
+    company: "Ubique",
+    period: "about.ubique.period",
+    position: "about.ubique.position",
+    logo: ubique,
+    description: "about.ubique.description",
+  },
+  {
+    company: "about.ethz.company",
+    period: "about.ethz.period",
+    position: "about.ethz.position",
+    logo: ethz,
+    description: "about.ethz.description",
+    className: "[&_img]:dark:invert",
+  },
+  {
+    company: "about.selfemployed.company",
+    period: "about.selfemployed.period",
+    position: "about.selfemployed.position",
+    logo: bstell,
+    description: "about.selfemployed.description",
+  },
+  {
+    company: "Adcubum AG",
+    period: "about.adcubum.period",
+    position: "about.adcubum.position",
+    logo: adcubum,
+    description: "about.adcubum.description",
+  },
+];
 ---
 
-<MainLayout className="space-y-8">
-  <h2 class="title">{t("about.title")}</h2>
+<MainLayout className="max-w-2xl space-y-20">
+  <div class="space-y-8">
+    <div class="space-y-4">
+      <h2 class="title">{t("about.title")}</h2>
+      <p class="text-lg">{t("about.description")}</p>
+    </div>
+    <div class="relative">
+      <div
+        class="liquid-glass-border bg-glass ease-out-expo group absolute top-0 right-1/6 z-10 flex size-12 -translate-y-1/2 items-center justify-center rounded-full border-dashed text-2xl shadow-lg backdrop-blur transition-all duration-700 md:top-1/6 md:right-0 md:translate-x-1/2 md:translate-y-0"
+      >
+        <span class="group-hover:animate-wiggle pointer-events-none origin-left"
+          >🤙</span
+        >
+      </div>
+      <Image
+        src={aboutImage}
+        alt="Nils Benz"
+        class="bg-secondary aspect-[3/2] w-full rounded-md object-cover shadow-lg saturate-120 sm:aspect-[2/1] [&:hover_+_div]:translate-x-3 [&:hover_+_div]:translate-y-3"
+      />
+      <div
+        class="ease-out-expo bg-background absolute inset-0 -z-10 translate-x-1.5 translate-y-1.5 rounded-md border-2 border-dashed transition-all duration-700"
+      >
+      </div>
+    </div>
+    <div class="space-y-2">
+      {
+        t("about.bio")
+          .split("\n")
+          .map((line) => <p>{line}</p>)
+      }
+    </div>
+    <div class="relative mx-auto flex w-full max-w-md justify-evenly px-6">
+      <div
+        class="ease-out-expo absolute top-1/2 right-2 left-2 -z-10 w-[calc(100%-1rem)] -translate-y-1/2 border-t-2 border-dashed transition-colors duration-700"
+      >
+        <div
+          class="bg-background ease-out-expo absolute -top-2 -left-2 h-4 w-10 backdrop-blur-md transition-colors duration-700"
+          style={{
+            maskImage: "linear-gradient(to right, black 10%, transparent 90%)",
+          }}
+        >
+        </div>
+        <div
+          class="bg-background ease-out-expo absolute -right-2 -bottom-2 h-4 w-10 backdrop-blur-md transition-colors duration-700"
+          style={{
+            maskImage: "linear-gradient(to left, black 10%, transparent 90%)",
+          }}
+        >
+        </div>
+      </div>
+      {
+        ["👨‍💻", "📹", "🥁", "🪁"].map((item) => (
+          <div class="bg-glass group ease-out-expo liquid-glass-border flex size-12 shrink-0 items-center justify-center rounded-full text-2xl backdrop-blur-xs transition-all duration-700 hover:z-10 hover:scale-125">
+            <p class="group-hover:animate-wiggle pointer-events-none">{item}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <div>
+    <h3 class="subtitle">{t("about.experience")}</h3>
+    <div class="relative space-y-12 pt-16">
+      <div
+        class="ease-out-expo absolute top-2 bottom-2 left-6 -z-10 h-[calc(100%-1rem)] -translate-x-1/2 border-l-2 border-dashed transition-colors duration-700"
+      >
+        <div
+          class="bg-background ease-out-expo absolute -top-2 -left-2 h-14 w-4 backdrop-blur-md transition-colors duration-700"
+          style={{
+            maskImage: "linear-gradient(to bottom, black 10%, transparent 90%)",
+          }}
+        >
+        </div>
+        <div
+          class="bg-background ease-out-expo absolute -bottom-2 -left-2 h-14 w-4 backdrop-blur-md transition-colors duration-700"
+          style={{
+            maskImage: "linear-gradient(to top, black 10%, transparent 90%)",
+          }}
+        >
+        </div>
+      </div>
+      {
+        experience.map((item) => (
+          <div class={cn("flex gap-4", item.className)}>
+            <div class="bg-glass group ease-out-expo liquid-glass-border size-12 shrink-0 rounded-full p-2.5 backdrop-blur-xs transition-colors duration-700">
+              <Image
+                src={item.logo}
+                alt=""
+                class="group-hover:animate-wiggle size-full"
+              />
+            </div>
+            <div>
+              <p class="text-muted-foreground text-sm">{t(item.period)}</p>
+              <h4 class="text-xl font-bold">{t(item.company)}</h4>
+              <p class="font-semibold">{t(item.position)}</p>
+              <p class="text-muted-foreground mt-2">{t(item.description)}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <div class="space-y-4">
+    <h3 class="subtitle">
+      {t("about.contact")}
+    </h3>
+    <p
+      set:html={t("about.contact.description").split("{email}").join(EMAIL)}
+      class="[&>a]:text-primary [&>a]:font-semibold [&>a]:underline [&>a]:underline-offset-2"
+    />
+  </div>
 </MainLayout>
