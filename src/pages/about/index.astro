@@ -98,7 +98,7 @@ const experience = [
       </div>
       {
         ["👨‍💻", "📹", "🥁", "🪁"].map((item) => (
-          <div class="bg-glass group ease-out-expo liquid-glass-border flex size-12 shrink-0 items-center justify-center rounded-full text-2xl backdrop-blur-xs transition-all duration-700 hover:z-10 hover:scale-125">
+          <div class="bg-glass group ease-out-expo liquid-glass-border flex size-12 shrink-0 items-center justify-center rounded-full text-xl backdrop-blur-xs transition-all duration-700">
             <p class="group-hover:animate-wiggle pointer-events-none">{item}</p>
           </div>
         ))
@@ -129,11 +129,11 @@ const experience = [
       {
         experience.map((item) => (
           <div class={cn("flex gap-4", item.className)}>
-            <div class="bg-glass group ease-out-expo liquid-glass-border size-12 shrink-0 rounded-full p-2.5 backdrop-blur-xs transition-colors duration-700">
+            <div class="bg-glass group ease-out-expo liquid-glass-border flex size-12 shrink-0 items-center justify-center rounded-full backdrop-blur-xs transition-colors duration-700">
               <Image
                 src={item.logo}
                 alt=""
-                class="group-hover:animate-wiggle size-full"
+                class="group-hover:animate-wiggle size-6"
               />
             </div>
             <div>

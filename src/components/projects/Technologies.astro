@@ -1,0 +1,143 @@
+---
+import astroDark from "@/assets/icons/astro-dark.svg";
+import astroLight from "@/assets/icons/astro-light.svg";
+import firebase from "@/assets/icons/firebase.svg";
+import motionDark from "@/assets/icons/motion-dark.svg";
+import motionLight from "@/assets/icons/motion-light.svg";
+import nextjs from "@/assets/icons/nextjs.svg";
+import reactDark from "@/assets/icons/react-dark.svg";
+import reactLight from "@/assets/icons/react-light.svg";
+import shadcnDark from "@/assets/icons/shadcn-dark.svg";
+import shadcnLight from "@/assets/icons/shadcn-light.svg";
+import strapi from "@/assets/icons/strapi.svg";
+import stripe from "@/assets/icons/stripe.svg";
+import tailwindcss from "@/assets/icons/tailwindcss.svg";
+import typescript from "@/assets/icons/typescript.svg";
+import vite from "@/assets/icons/vite.svg";
+import { cn } from "@/lib/utils";
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+const Technology = {
+  React: "react",
+  Vite: "vite",
+  Astro: "astro",
+  TailwindCSS: "tailwindcss",
+  Firebase: "firebase",
+  TypeScript: "typescript",
+  Motion: "motion",
+  Stripe: "stripe",
+  ShadCN: "shadcn",
+  Strapi: "strapi",
+  NextJS: "nextjs",
+} as const;
+type Technology = (typeof Technology)[keyof typeof Technology];
+
+const assets: Record<
+  Technology,
+  { label: string; icon: ImageMetadata; dark?: ImageMetadata }
+> = {
+  [Technology.React]: {
+    label: "React",
+    icon: reactLight,
+    dark: reactDark,
+  },
+  [Technology.Vite]: {
+    label: "Vite",
+    icon: vite,
+  },
+  [Technology.Astro]: {
+    label: "Astro",
+    icon: astroLight,
+    dark: astroDark,
+  },
+  [Technology.TailwindCSS]: {
+    label: "Tailwind CSS",
+    icon: tailwindcss,
+  },
+  [Technology.Firebase]: {
+    label: "Firebase",
+    icon: firebase,
+  },
+  [Technology.TypeScript]: {
+    label: "TypeScript",
+    icon: typescript,
+  },
+  [Technology.Motion]: {
+    label: "Motion",
+    icon: motionLight,
+    dark: motionDark,
+  },
+  [Technology.Stripe]: {
+    label: "Stripe",
+    icon: stripe,
+  },
+  [Technology.ShadCN]: {
+    label: "shadcn/ui",
+    icon: shadcnLight,
+    dark: shadcnDark,
+  },
+  [Technology.Strapi]: {
+    label: "Strapi",
+    icon: strapi,
+  },
+  [Technology.NextJS]: {
+    label: "Next.js",
+    icon: nextjs,
+  },
+};
+
+interface Props {
+  used: Technology[];
+}
+
+const { used } = Astro.props;
+---
+
+<div class="relative my-8">
+  <div
+    class="ease-out-expo absolute top-6 right-2 left-2 -z-10 w-[calc(100%-1rem)] -translate-y-1/2 border-t-2 border-dashed transition-colors duration-700"
+  >
+    <div
+      class="bg-background ease-out-expo absolute -top-2 -left-2 h-4 w-10 backdrop-blur-md transition-colors duration-700"
+      style={{
+        maskImage: "linear-gradient(to right, black 10%, transparent 90%)",
+      }}
+    >
+    </div>
+    <div
+      class="bg-background ease-out-expo absolute -right-2 -bottom-2 h-4 w-10 backdrop-blur-md transition-colors duration-700"
+      style={{
+        maskImage: "linear-gradient(to left, black 10%, transparent 90%)",
+      }}
+    >
+    </div>
+  </div>
+  <div
+    class="mx-auto grid w-full max-w-md auto-cols-fr grid-flow-col gap-2 px-6"
+  >
+    {
+      used.map((item) => (
+        <div class="flex flex-col items-center space-y-1">
+          <div class="bg-glass group ease-out-expo liquid-glass-border flex size-12 shrink-0 items-center justify-center rounded-full text-2xl backdrop-blur-xs transition-all duration-700">
+            <div class="group-hover:animate-wiggle pointer-events-none">
+              <Image
+                src={assets[item].icon}
+                alt=""
+                class={cn("size-6", assets[item].dark && "dark:hidden")}
+              />
+              {assets[item].dark && (
+                <Image
+                  src={assets[item].dark}
+                  alt=""
+                  class="hidden size-6 dark:block"
+                />
+              )}
+            </div>
+          </div>
+          <p class="max-w-full truncate text-xs">{assets[item].label}</p>
+        </div>
+      ))
+    }
+  </div>
+</div>

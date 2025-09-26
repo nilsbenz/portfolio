@@ -34,7 +34,7 @@ const t = useTranslations(lang);
             href={getRelativeLocaleUrl(lang, "/")}
             class={cn(
               buttonVariants({ variant: "ghost" }),
-              "hover:bg-accent/60"
+              "hover:bg-accent/60",
             )}
           >
             {t("nav.home")}
@@ -45,7 +45,7 @@ const t = useTranslations(lang);
             href={getRelativeLocaleUrl(lang, "/projects/")}
             class={cn(
               buttonVariants({ variant: "ghost" }),
-              "hover:bg-accent/60"
+              "hover:bg-accent/60",
             )}
           >
             {t("nav.projects")}
@@ -56,7 +56,7 @@ const t = useTranslations(lang);
             href={getRelativeLocaleUrl(lang, "/about/")}
             class={cn(
               buttonVariants({ variant: "ghost" }),
-              "hover:bg-accent/60"
+              "hover:bg-accent/60",
             )}
           >
             {t("nav.about")}
@@ -67,14 +67,14 @@ const t = useTranslations(lang);
         id="header-controls"
         class="liquid-glass-border ease-out-expo flex items-center gap-0.5 rounded-full p-[3px] transition-all duration-700"
       >
-        <LanguageToggle client:load />
+        <LanguageToggle />
         <ThemeToggle />
         <a
           href="https://github.com/nilsbenz/portfolio"
           target="_blank"
           class={cn(
             buttonVariants({ variant: "ghost", size: "icon" }),
-            "hover:bg-accent/60"
+            "hover:bg-accent/60",
           )}
         >
           <GithubIcon />
@@ -86,33 +86,46 @@ const t = useTranslations(lang);
 </header>
 
 <script is:inline>
-  const bgElement = document.getElementById("header-bg");
-  const controlsElement = document.getElementById("header-controls");
-
-  const initialControlsClasses = ["bg-glass", "backdrop-blur-xs"];
-  const scrolledControlsClasses = ["bg-foreground/5", "dark:bg-foreground/7.5"];
+  let handleScroll = undefined;
 
   function isScrolled() {
     return window.scrollY > 16;
   }
 
-  bgElement.style.transform = `translateY(${isScrolled() ? 0 : "-100%"})`;
-  controlsElement.classList.add(
-    ...(isScrolled() ? scrolledControlsClasses : initialControlsClasses)
-  );
+  const initialControlsClasses = ["bg-glass", "backdrop-blur-xs"];
+  const scrolledControlsClasses = ["bg-foreground/5", "dark:bg-foreground/7.5"];
 
-  setTimeout(() => {
-    bgElement.classList.add("loaded");
-  }, 10);
+  function addScrollListener() {
+    const bgElement = document.getElementById("header-bg");
+    const controlsElement = document.getElementById("header-controls");
 
-  addEventListener("scroll", () => {
     bgElement.style.transform = `translateY(${isScrolled() ? 0 : "-100%"})`;
-    if (isScrolled()) {
-      controlsElement.classList.remove(...initialControlsClasses);
-      controlsElement.classList.add(...scrolledControlsClasses);
-    } else {
-      controlsElement.classList.remove(...scrolledControlsClasses);
-      controlsElement.classList.add(...initialControlsClasses);
+    controlsElement.classList.add(
+      ...(isScrolled() ? scrolledControlsClasses : initialControlsClasses),
+    );
+
+    handleScroll = function () {
+      bgElement.style.transform = `translateY(${isScrolled() ? 0 : "-100%"})`;
+      if (isScrolled()) {
+        controlsElement.classList.remove(...initialControlsClasses);
+        controlsElement.classList.add(...scrolledControlsClasses);
+      } else {
+        controlsElement.classList.remove(...scrolledControlsClasses);
+        controlsElement.classList.add(...initialControlsClasses);
+      }
+    };
+    document.addEventListener("scroll", handleScroll);
+
+    setTimeout(() => {
+      bgElement.classList.add("loaded");
+    }, 200);
+  }
+
+  document.addEventListener("astro:before-swap", () => {
+    if (handleScroll) {
+      document.removeEventListener("scroll", handleScroll);
     }
   });
+  document.addEventListener("astro:after-swap", addScrollListener);
+  addScrollListener();
 </script>

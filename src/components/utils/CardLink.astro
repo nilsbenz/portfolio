@@ -15,16 +15,18 @@ const { href, image, title, icon } = Astro.props;
 <a
   href={href}
   class="focus-visible:ring-ring/50 group ring-offset-background ease-out-expo relative rounded-xl transition-shadow duration-700 focus:outline-none focus-visible:ring-3 focus-visible:ring-offset-2"
+  transition:name={`card-link-${href}`}
 >
   <div
-    class="bg-background ease-out-expo rounded-xl border-2 border-dashed p-2 transition-colors duration-700"
+    class="bg-background ease-out-expo h-full rounded-xl border-2 border-dashed p-2 transition-colors duration-700"
   >
     <Image
       src={image}
       alt={title}
       class="aspect-video w-full rounded-xs object-cover"
+      transition:name={`image-${image.src}`}
     />
-    <div class="p-2">
+    <div class="px-2 pt-3 pb-1">
       <div class="flex items-center gap-1.5">
         {icon && <Image src={icon} alt="" class="size-6" />}
         <h4 class="text-lg font-semibold">

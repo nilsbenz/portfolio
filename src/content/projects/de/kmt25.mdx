@@ -1,0 +1,44 @@
+---
+title: "KMT25-App"
+icon: "@/assets/icons/kmt25.svg"
+description: "Website und App für die Rheintaler Kreismusiktage 2025 in Diepoldsau"
+thumbnail: "@/assets/projects/kmt25/thumbnail-de.png"
+featured: true
+---
+import Technologies from "@/components/projects/Technologies.astro";
+
+Für die Rheintaler Kreismusiktage 2025 in Diepoldsau habe ich die offizielle Website und die dazugehörige Progressive Web App (PWA) entwickelt. Das Konzept und UI-Design stammt von Marco Nussbaumer. Die Website ist unter [kmt25.ch](https://kmt25.ch) erreichbar.
+
+Die App bietet den Besuchern einen einfachen Überblick über das Programm und die teilnehmenden Vereine. Zudem können aktuelle News eingesehen und wenn gewünscht auch per Push-Benachrichtigung empfangen werden.
+
+Ein weiterer zentraler Bestandteil der App ist die Bestellfunktion in der Festhalle, wo die Besucher Essen und Getränke direkt über die App bestellen können. Dazu habe ich das bestehende System von [Bstell online](https://info.bstell.online) integriert.
+
+# Technologien
+
+Um die Website möglichst SEO-freundlich zu gestalten, habe ich Astro als Framework verwendet, zusammen mit React für die interaktiven Teile der App. Das UI-Design basiert auf shadcn/ui, Tailwind CSS und Radix UI. Die Push-Benachrichtigungen erfolgen über Firebase, als CMS für die Newsbeiträge kommt Strapi zum Einsatz.
+
+<Technologies used={["astro", "react", "tailwindcss", "strapi" ]} />
+
+# Funktionen
+
+Nachfolgend sind die wichtigsten Seiten und Funktionen der Website und App aufgeführt. Die Website ist unter [kmt25.ch](https://kmt25.ch) erreichbar, du kannst dir also auch selber ein Bild davon machen.
+
+![Website der Rheintaler Kreismusiktage 2025](@/assets/projects/kmt25/kmt-home.png)
+
+## App
+
+Die Besucher der Kreismusiktage können die PWA auf ihrem Smartphone installieren, um schnellen Zugriff auf das Programm und die weiteren Funktionen zu haben. Ausserdem können sie dann Push-Benachrichtigungen erhalten, wenn es Neuigkeiten gibt.
+
+![Anleitung zur Installation der PWA](@/assets/projects/kmt25/kmt-app.png)
+
+## Wettspielplan
+
+Der Wettspiel- und Lageplan ist einer der zentralen Inhalte der Website. Hier erhalten die Besucher und Musikanten einen Überblick, wann und wo die verschiedenen Vereine auftreten.
+
+![Wettspielplan](@/assets/projects/kmt25/kmt-wettspiel.png)
+
+## Bestellsystem
+
+In der Festhalle und dem Biergarten konnten die Besucher Essen und Getränke direkt über die Website/App bestellen. Dazu konnte ein QR-Code gescannt, die Artikel ausgewählt und direkt online bezahlt werden. Als Bestellsystem habe ich [Bstell online](https://info.bstell.online) integriert, insgesamt wurden über 7'500 Bestellungen aufgegeben, davon mehr als 1'500 online über die KMT25-Website.
+
+![Bestellsystem «Bstell online» über die KMT25-Website](@/assets/projects/kmt25/kmt-bstell.png)

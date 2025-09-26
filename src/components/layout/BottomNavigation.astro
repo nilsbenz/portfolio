@@ -25,7 +25,10 @@ const navItems = [
 const activeItem = navItems
   .filter(
     (i) =>
-      (pathname.startsWith(i.path) && i.path !== "/") || pathname === i.path
+      ((pathname.startsWith(i.path) ||
+        pathname.substring(3).startsWith(i.path)) &&
+        i.path !== "/") ||
+      pathname === i.path,
   )
   .sort((a, b) => b.path.length - a.path.length)[0]?.path;
 ---
@@ -47,13 +50,13 @@ const activeItem = navItems
                 class={cn(
                   "focus-visible:ring-ring/50 ease-out-expo flex h-full flex-col items-center justify-center gap-0.5 rounded-full px-3 text-xs font-semibold transition-colors duration-700 focus:outline-none focus-visible:ring-3",
                   isActive &&
-                    "liquid-glass-border bg-foreground/5 dark:bg-foreground/7.5 text-primary font-semibold"
+                    "liquid-glass-border bg-foreground/5 dark:bg-foreground/7.5 text-primary font-semibold",
                 )}
               >
                 <element.icon
                   className={cn(
                     "stroke-2.25 size-5",
-                    isActive && "stroke-2.75"
+                    isActive && "stroke-2.75",
                   )}
                 />
                 {t(element.label)}

@@ -1,0 +1,9 @@
+---
+import { cn } from "@/lib/utils";
+import type { ComponentProps } from "astro/types";
+import { Image as AstroImage } from "astro:assets";
+
+type Props = ComponentProps<typeof AstroImage>;
+---
+
+<AstroImage {...Astro.props} class={cn(Astro.props.class, "my-8")} />

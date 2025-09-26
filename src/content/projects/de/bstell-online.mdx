@@ -1,9 +1,64 @@
 ---
 title: "Bstell online"
 icon: "@/assets/icons/bstell.svg"
-description: "Das Kassensystem für Vereine"
-thumbnail: "@/assets/home/profile.jpg"
+description: "Ein Bestellsystem für Vereinsanlässe"
+thumbnail: "@/assets/projects/bstell-online/thumbnail-de.png"
 featured: true
 ---
+import Technologies from "@/components/projects/Technologies.astro";
 
-## Das Kassensystem für Vereine
+Angefangen hat das Projekt im Herbst 2023, als ich im Rahmen eines ETH-Projekts die erste Version entwickelt habe. Die meisten bestehenden Bestell-Systeme waren teuer und oft entweder nicht auf Vereinsanlässe ausgelegt oder zu kompliziert in der Handhabung. Mit Bstell online wollte ich eine einfache und günstige Lösung schaffen, die genau auf die Bedürfnisse von Vereinen zugeschnitten ist.
+
+Seit der ersten Nutzung am Adventsmarkt 2023 in Au SG habe ich das System laufend weiterentwickelt und neue Funktionen hinzugefügt. Bisheriger Höhepunkt war der Einsatz an den Rheintaler Kreismusiktagen 2025 mit über 7500 Bestellungen.
+
+Das System unterscheidet sich von anderen Lösungen dadurch, dass das Servicepersonal mit dem eigenen Smartphone arbeitet und die Bestellungen in der Cloud gespeichert werden. Da keine Tablets oder sonstige Kassenhardware benötigt werden, ist das System sehr kostengünstig und flexibel einsetzbar. Ausserdem soll die Zuverlässigkeit erhöht werden, indem auf ein lokales Netzwerk verzichtet wird.
+
+Die App ist unter [bstell.online](https://bstell.online) erreichbar, die Dokumentation dazu befindet sich unter [info.bstell.online](https://info.bstell.online).
+
+# Technologien
+
+Die App ist als Progressive Web App (PWA) umgesetzt, die sowohl auf Smartphones als auch auf Desktop-Geräten funktioniert. Als Framework habe ich React mit TypeScript und Vite als Build-Tool verwendet. Für das UI-Design kommt shadcn/ui zum Einsatz, damit verbunden Tailwind CSS und Radix UI. Die Authentifizierung und Datenhaltung erfolgt über Firebase, die Bezahlung über Stripe.
+
+<Technologies used={["react", "vite", "firebase", "stripe" ]} />
+
+Für die [Dokumentation](https://info.bstell.online) habe ich eine zweite Website mit Astro erstellt, um möglichst SEO-freundlich zu sein. Auch hier kommt React mit shadcn/ui, Tailwind CSS und Radix UI zum Einsatz, ergänzt mit Framer Motion für die Animationen.
+
+<Technologies used={["astro", "shadcn", "tailwindcss", "motion" ]} />
+
+# Funktionen
+
+Nachfolgend sind einige der wichtigsten Funktionen der App aufgelistet.
+
+## Artikelverwaltung
+
+Der Vereins-Admin kann neue Events erstellen und die angebotenen Artikel verwalten. Dabei werden die Artikel in Kategorien organisiert, um die Übersicht zu verbessern.
+
+![Artikel definieren](@/assets/projects/bstell-online/bstell-articles.png)
+
+Parallel dazu können verschiedene weitere Einstellungen vorgenommen werden, wie z.B. die Tische, Zahlungsarten oder das Servicepersonal.
+
+## Servicepersonal
+
+Das Personal kann mit dem eigenen Smartphone arbeiten und wird über die App angemeldet. Der Admin hat also jederzeit unter Kontrolle, wer gerade im Einsatz ist und Bestellungen entgegennehmen kann.
+
+In der folgenden Abbildung sind die Ansichten zu sehen um eine Bestellung aufzunehmen und anschliessend einzukassieren.
+
+![Ansicht des Servicepersonals beim Bestellen](@/assets/projects/bstell-online/bstell-waiter.png)
+
+## Online-Bestellungen
+
+Pro Tisch kann ein QR-Code generiert werden, der von den Gästen gescannt werden kann. Anschliessend können sie die Artikel auswählen und die Bestellung direkt online bezahlen.
+
+![Ansicht der Kunden beim Bestellen per QR-Code](@/assets/projects/bstell-online/bstell-customer.png)
+
+## Auswertung
+
+Nach dem Event kann eine Auswertung der Bestellungen erstellt werden. Die Daten werden in verschiedenen Diagrammen dargestellt und können auch als CSV-Datei exportiert werden.
+
+![Screenshot einer Auswertung](@/assets/projects/bstell-online/bstell-report.png)
+
+## Interessiert?
+
+Falls du selber in einem Verein aktiv bist und ihr einen Anlass plant, probiere Bstell online doch einfach mal aus. Du kannst sämtliche Funktionen ausser dem Erstellen richtiger Bestellungen kostenlos testen.
+
+Wie du loslegen kannst erfährst du in der [Dokumentation](https://info.bstell.online/docs/loslegen).

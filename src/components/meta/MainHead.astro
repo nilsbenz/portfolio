@@ -2,6 +2,7 @@
 import { getLang, useTranslations } from "@/i18n/utils";
 import "@/styles/global.css";
 import "@fontsource-variable/outfit";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title?: string | undefined;
@@ -24,26 +25,41 @@ const { title = "Nils Benz", description = t("meta.description") } =
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+<ClientRouter />
+
 <script is:inline>
-  const getThemePreference = () => {
+  let observer = null;
+
+  function getThemePreference() {
     if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
       return localStorage.getItem("theme");
     }
     return window.matchMedia("(prefers-color-scheme: dark)").matches
       ? "dark"
       : "light";
-  };
-  const isDark = getThemePreference() === "dark";
-  document.documentElement.classList[isDark ? "add" : "remove"]("dark");
-
-  if (typeof localStorage !== "undefined") {
-    const observer = new MutationObserver(() => {
-      const isDark = document.documentElement.classList.contains("dark");
-      localStorage.setItem("theme", isDark ? "dark" : "light");
-    });
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
   }
+
+  function applyTheme() {
+    const isDark = getThemePreference() === "dark";
+    document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+
+    if (typeof localStorage !== "undefined") {
+      observer = new MutationObserver(() => {
+        const isDark = document.documentElement.classList.contains("dark");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+      });
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["class"],
+      });
+    }
+  }
+
+  document.addEventListener("astro:before-swap", () => {
+    if (observer) {
+      observer.disconnect();
+    }
+  });
+  document.addEventListener("astro:after-swap", applyTheme);
+  applyTheme();
 </script>

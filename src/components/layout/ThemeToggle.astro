@@ -8,7 +8,7 @@ import { buttonVariants } from "../ui/button";
   <button
     class={cn(
       buttonVariants({ variant: "ghost", size: "icon" }),
-      "group relative overflow-clip hover:bg-accent/60"
+      "group hover:bg-accent/60 relative overflow-clip",
     )}
   >
     <span class="sr-only">Dark theme</span>
@@ -30,7 +30,6 @@ import { buttonVariants } from "../ui/button";
 
       function setTheme(dark: boolean) {
         document.documentElement.classList[dark ? "add" : "remove"]("dark");
-        button.setAttribute("aria-pressed", String(dark));
       }
 
       button.addEventListener("click", () => setTheme(!this.isDark()));
