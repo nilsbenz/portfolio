@@ -1,10 +1,15 @@
 ---
+import { getLang } from "@/i18n/utils";
 import MainLayout from "@/layouts/MainLayout.astro";
+import FilmsSection from "./_components/FilmsSection";
 import HeroSection from "./_components/HeroSection.astro";
 import ProjectsSection from "./_components/ProjectsSection.astro";
+
+const lang = getLang(Astro.currentLocale, Astro.url);
 ---
 
 <MainLayout>
   <HeroSection />
   <ProjectsSection />
+  <FilmsSection client:load lang={lang} />
 </MainLayout>

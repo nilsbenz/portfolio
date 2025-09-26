@@ -1,18 +1,22 @@
 ---
 title: "Web Dojo"
 icon: "@/assets/icons/web-dojo.svg"
-description: "Lernplattform für Webentwicklung"
+description: "Learning platform for web development with interactive courses"
 thumbnail: "@/assets/projects/web-dojo/thumbnail.png"
 featured: true
 ---
 import Technologies from "@/components/projects/Technologies.astro";
 
-Das [Web Dojo](https://web-dojo.xyz) war mein erstes grösseres Webprojekt, das ich 2021 entwickelt habe. Das Ziel war, eine Plattform für Gymnasiasten zu schaffen, um die Grundlagen der Webentwicklung zu lernen. Dies, weil der Unterricht während meiner Zeit an der Kantonsschule nicht sehr strukturiert war.
+The [Web Dojo](https://web-dojo.xyz) was my first major web project, which I developed in 2021. The goal was to create a platform for high school students to learn the basics of web development. This was because the lessons during my time at the cantonal school were not very structured.
 
-Zur Zeit gibt es verschiedene Kapitel über das Internet im Allgemeinen, HTML und CSS. Weitere Kapitel zu JavaScript und anderen Themen sind in Planung.
+Currently, there are various chapters on the Internet in general, HTML, and CSS. Further chapters on JavaScript and other topics are planned.
 
-Für die Entwicklung habe ich Next.js als Static Site Generator verwendet. Die Lizenzen werden in Firebase gespeichert und können von Nutzern direkt mit Stripe bezahlt werden.
+For development, I used Next.js as a Static Site Generator. Licenses are stored in Firebase and can be paid for directly by users with Stripe.
 
 <Technologies used={["nextjs", "tailwindcss", "firebase", "stripe" ]} />
 
+The idea was to provide students with an interactive learning environment. The chapters contain many examples and exercises that can be edited and tried out directly in the browser. A change in the editor is immediately displayed in the preview window.
 
+The following screenshot shows an example of a course explaining the CSS properties for styling text.
+
+![Example of a course in Web Dojo](@/assets/projects/web-dojo/webdojo-editor.png)

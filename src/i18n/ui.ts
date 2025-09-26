@@ -18,6 +18,8 @@ export const ui: Record<keyof typeof languages, Record<string, string>> = {
     "hero.description":
       "Ich bin Softwareentwickler und komme aus dem St. Galler Rheintal. Ich fokussiere mich primär auf die Web-Entwicklung, habe aber auch Erfahrung im Backend-Bereich.",
     "home.projects.title": "Meine Projekte",
+    "home.projects.viewAll": "Alle Projekte",
+    "home.films.title": "Meine Videos",
     "projects.title": "Meine Projekte",
     "about.title": "Über mich",
     "about.description":
@@ -30,7 +32,7 @@ In meiner Freizeit spiele ich Schlagzeug beim Musikverein Diepoldsau-Schmitter u
       "Lernender Informatik EFZ, anschl. Web-Entwickler (Teilzeit)",
     "about.adcubum.description":
       "Way-Up Lehre Applikationsentwicklung von 2018 bis 2020, anschliessend verantwortlich für die Entwicklung und Unterhaltung eines internen Testing-Tools für GRPC-Services.",
-    "about.selfemployed.company": "Selbständig",
+    "about.selfemployed.company": "Selbstständig",
     "about.selfemployed.period": "August 2020 - Heute",
     "about.selfemployed.position": "Softwareentwickler & Filmemacher",
     "about.selfemployed.description":
@@ -58,6 +60,8 @@ In meiner Freizeit spiele ich Schlagzeug beim Musikverein Diepoldsau-Schmitter u
     "hero.description":
       "I'm a software developer from the St. Gallen Rhine Valley. I primarily focus on web development but also have experience in backend development.",
     "home.projects.title": "My Projects",
+    "home.projects.viewAll": "All Projects",
+    "home.films.title": "My Films",
     "projects.title": "My Projects",
     "about.title": "About me",
     "about.description":

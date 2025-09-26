@@ -1,9 +1,44 @@
 ---
 title: "KMT25-App"
 icon: "@/assets/icons/kmt25.svg"
-description: "Website und App für die Rheintaler Kreismusiktage 2025 in Diepoldsau"
-thumbnail: "@/assets/projects/kmt25/thumbnail-en.png"
+description: "Website und App for the Rheintaler Kreismusiktage 2025 in Diepoldsau"
+thumbnail: "@/assets/projects/kmt25/thumbnail-de.png"
 featured: true
 ---
+import Technologies from "@/components/projects/Technologies.astro";
 
-## Progressive Web App for the Rheintaler Kreismusiktage 2025
+I developed the official website and accompanying progressive web app (PWA) for the Rheintaler Kreismusiktage 2025 in Diepoldsau. The concept and UI design were created by Marco Nussbaumer. The website can be accessed at [kmt25.ch](https://kmt25.ch).
+
+The app provides visitors with an easy overview of the program and participating orchestras. In addition, current news can be viewed and, if desired, received via push notification.
+
+Another central component of the app is the ordering function in the festival hall, where visitors can order food and drinks directly through the app. For this purpose, I integrated the existing system from [Bstell online](https://info.bstell.online).
+
+# Technologies
+
+To make the website as SEO-friendly as possible, I used Astro as the framework, along with React for the interactive parts of the app. The UI design is based on shadcn/ui, Tailwind CSS, and Radix UI. Push notifications are handled via Firebase, and Strapi is used as the CMS for the news articles.
+
+<Technologies used={["astro", "react", "tailwindcss", "strapi" ]} />
+
+# Features
+
+The following are the main pages and features of the website and app. The website can be accessed at [kmt25.ch](https://kmt25.ch), so you can also get an impression of it yourself.
+
+![Website of the Rheintaler Kreismusiktage 2025](@/assets/projects/kmt25/kmt-home.png)
+
+## App
+
+Visitors of the Kreismusiktage can install the PWA on their smartphones for quick access to the program and other features. In addition, they can receive push notifications when there are updates.
+
+![Instructions for installing the PWA](@/assets/projects/kmt25/kmt-app.png)
+
+## Schedule
+
+The schedule is one of the central contents of the website. Here, visitors and musicians get an overview of when and where the various orchestras and bands perform.
+
+![Schedule](@/assets/projects/kmt25/kmt-wettspiel.png)
+
+## Ordering System
+
+In the festival hall and the beer garden, visitors could order food and drinks directly through the website/app. To do this, a QR code could be scanned, the items selected, and paid for online. For the ordering system, I integrated [Bstell online](https://info.bstell.online), and a total of over 7,500 orders were placed, more than 1,500 of which were made online through the KMT25 website.
+
+![Ordering system “Bstell online” via the KMT25 website](@/assets/projects/kmt25/kmt-bstell.png)

@@ -2,6 +2,7 @@
 import CardLink from "@/components/utils/CardLink.astro";
 import { getLang, useTranslations } from "@/i18n/utils";
 import MainLayout from "@/layouts/MainLayout.astro";
+import { sortProjects } from "@/lib/projects";
 import { getCollection } from "astro:content";
 
 const lang = getLang(Astro.currentLocale, Astro.url);
@@ -17,11 +18,14 @@ const translatedProjects = pages.reduce(
     projects[id][lang] = project;
     return projects;
   },
-  {} as Record<string, Record<string, (typeof pages)[number]>>
+  {} as Record<string, Record<string, (typeof pages)[number]>>,
 );
-const projects = Object.values(translatedProjects).map(
-  (translatedProjects) => translatedProjects[lang] || translatedProjects["en"]
-);
+const projects = Object.values(translatedProjects)
+  .map(
+    (translatedProjects) =>
+      translatedProjects[lang] || translatedProjects["en"],
+  )
+  .sort(sortProjects);
 ---
 
 <MainLayout className="space-y-8">

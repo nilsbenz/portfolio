@@ -1,9 +1,60 @@
 ---
 title: "Kitesurf Adventure"
 icon: "@/assets/icons/kitesurf-adventure.svg"
-description: "Planning app for a kitesurf school"
+description: "Planning app for a kitesurfing school on Lake Garda"
 thumbnail: "@/assets/projects/kitesurf-adventure/thumbnail.png"
 featured: true
 ---
+import Technologies from "@/components/projects/Technologies.astro";
 
-## The kitesurf adventure planning app
+I developed a PWA for Kitesurf Adventure, a kitesurfing school on Lake Garda, in collaboration with [Marius Emmenegger](https://macchiatoit.com). The project began in the summer of 2022, and the app has been in productive use since the 2023 season.
+
+The app supports the office in planning courses, daily schedules, and material management. Customers of the kitesurfing school use the app to view their daily schedules and completed sessions.
+
+The website is accessible at [kitesurf-adventure.app](https://kitesurf-adventure.app) but requires registration.
+
+# Technologies
+
+The project is based on PNPM Workspaces and uses React with TypeScript and Vite as the build tool. For the UI design, shadcn/ui is used, along with Tailwind CSS and Radix UI. Authentication and data storage are handled via Firebase.
+
+<Technologies used={["react", "vite", "shadcn", "firebase" ]} />
+
+# Features
+
+Some of the app's most important features are listed below. I mainly focus on the features I implemented.
+
+I implemented a large part of the project setup, state management, and authentication. In addition, I implemented planning, including bookings, boat planning, and translations. I am also responsible for the design of the app.
+
+A large part of the app can be configured to meet the changing needs of the kite school. For example, the available courses, employee types, boats, and much more can be customized.
+
+## Planning
+
+The heart of the app is the planning of teachers and courses. All courses are displayed in a calendar view, and the currently available capacity of the teachers is also shown directly.
+
+![The planning in calendar view](@/assets/projects/kitesurf-adventure/ksa-planning.png)
+
+Bookings are primarily imported from the booking system (myLeao) but can also be created and adjusted manually.
+
+## Boat Planning
+
+For individual days, a boat plan is created in which the students are assigned to the corresponding teachers and boats. To edit the planning, people can be moved via drag & drop.
+
+![The boat planning](@/assets/projects/kitesurf-adventure/ksa-boats.png)
+
+## Bookings and Sessions
+
+Both the customer and the office can view the bookings and the associated kite sessions. This increases transparency for the customer and gives the office a better overview of the completed sessions.
+
+![The bookings and sessions of a customer](@/assets/projects/kitesurf-adventure/ksa-booking.png)
+
+## Other Features
+
+The listed features are just a snapshot of the entire app. Other features include:
+
+- Reporting of completed sessions by teachers
+- Material management with associated shop
+- Translations in English and German
+- Student check-in
+- List of all teachers and students present
+- Employee management
+- Configurable settings

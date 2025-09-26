@@ -1,7 +1,12 @@
 ---
+import { buttonVariants } from "@/components/ui/button";
 import CardLink from "@/components/utils/CardLink.astro";
 import { getLang, useTranslations } from "@/i18n/utils";
+import { sortProjects } from "@/lib/projects";
+import { cn } from "@/lib/utils";
 import { getCollection } from "astro:content";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { ExternalLinkIcon } from "lucide-react";
 
 const lang = getLang(Astro.currentLocale, Astro.url);
 const t = useTranslations(lang);
@@ -16,13 +21,15 @@ const translatedProjects = pages.reduce(
     projects[id][lang] = project;
     return projects;
   },
-  {} as Record<string, Record<string, (typeof pages)[number]>>
+  {} as Record<string, Record<string, (typeof pages)[number]>>,
 );
 const projects = Object.values(translatedProjects)
   .map(
-    (translatedProjects) => translatedProjects[lang] || translatedProjects["en"]
+    (translatedProjects) =>
+      translatedProjects[lang] || translatedProjects["en"],
   )
-  .filter((project) => project.data.featured);
+  .filter((project) => project.data.featured)
+  .sort(sortProjects);
 ---
 
 <div class="space-y-6 pt-16">
@@ -40,5 +47,17 @@ const projects = Object.values(translatedProjects)
         </CardLink>
       ))
     }
+  </div>
+  <div class="flex justify-center">
+    <a
+      href={getRelativeLocaleUrl(lang, "/projects/")}
+      class={cn(
+        buttonVariants({ variant: "outline", size: "lg" }),
+        "max-w-xs sm:w-full",
+      )}
+    >
+      <ExternalLinkIcon />
+      {t("home.projects.viewAll")}
+    </a>
   </div>
 </div>

@@ -1,9 +1,64 @@
 ---
 title: "Bstell online"
 icon: "@/assets/icons/bstell.svg"
-description: "An app that allows clubs to take orders online or via waiters"
+description: "An ordering system for small and large events"
 thumbnail: "@/assets/projects/bstell-online/thumbnail-en.png"
 featured: true
 ---
+import Technologies from "@/components/projects/Technologies.astro";
 
-## The ordering system for clubs
+The project began in fall 2023, when I developed the first version as part of an ETH project. Most existing ordering systems were expensive and often either not designed for club events or too complicated to use. With Bstell online, I wanted to create a simple and affordable solution that was tailored precisely to the needs of clubs.
+
+Since its first use at the 2023 Advent market in Au SG, I have continuously developed the system and added new features. The highlight so far was its use at the Rheintaler Kreismusiktage 2025, where it handled over 7,500 orders.
+
+The system differs from other solutions in that service staff work with their own smartphones and orders are stored in the cloud. Since no tablets or other cash register hardware are required, the system is very cost-effective and flexible. In addition, reliability is increased by eliminating the need for a local network.
+
+The app is available at [bstell.online](https://bstell.online), and the documentation can be found at [info.bstell.online](https://info.bstell.online).
+
+# Technologies
+
+The app is implemented as a Progressive Web App (PWA) that works on both smartphones and desktop devices. I used React with TypeScript and Vite as the build tool. For the UI design, I used shadcn/ui, along with Tailwind CSS and Radix UI. Authentication and data storage are handled via Firebase, and payments are processed through Stripe.
+
+<Technologies used={["react", "vite", "firebase", "stripe" ]} />
+
+For the [documentation](https://info.bstell.online), I created a second website with Astro to be as SEO-friendly as possible. Here, too, I used React with shadcn/ui, Tailwind CSS, and Radix UI, complemented by Framer Motion for animations.
+
+<Technologies used={["astro", "shadcn", "tailwindcss", "motion" ]} />
+
+# Features
+
+Some of the app's most important features are listed below.
+
+## Article Management
+
+The club admin can create new events and manage the articles offered. The articles are organized into categories to improve the structure.
+
+![Define the articles](@/assets/projects/bstell-online/bstell-articles.png)
+
+At the same time, various other settings can be made, such as the tables, payment methods, or service staff.
+
+## Service Staff
+
+The staff can work with their own smartphones and are logged in via the app. The admin always has control over who is currently on duty and can take orders.
+
+The following illustration shows the views for taking an order and subsequently processing the payment.
+
+![View of the service staff when ordering](@/assets/projects/bstell-online/bstell-waiter.png)
+
+## Online Orders
+
+For each table, a QR code can be generated that can be scanned by guests. They can then select the items and pay for the order directly online.
+
+![Customer view when ordering via QR code](@/assets/projects/bstell-online/bstell-customer.png)
+
+## Reports
+
+After the event, a report can be generated from the orders. The data is presented in various charts and can also be exported as a CSV file.
+
+![Screenshot of a report](@/assets/projects/bstell-online/bstell-report.png)
+
+## Interested?
+
+If you are active in a club and are planning an event, why not give Bstell online a try? You can test all functions except for creating real orders for free.
+
+You can find out how to get started in the [documentation](https://info.bstell.online/docs/loslegen).
