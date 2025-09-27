@@ -2,7 +2,6 @@
 import { getLang, useTranslations } from "@/i18n/utils";
 import "@/styles/global.css";
 import "@fontsource-variable/outfit";
-import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title?: string | undefined;
@@ -24,8 +23,6 @@ const { title = "Nils Benz", description = t("meta.description") } =
 <title>{title}</title>
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-<ClientRouter />
 
 <script is:inline>
   let observer = null;
@@ -55,11 +52,5 @@ const { title = "Nils Benz", description = t("meta.description") } =
     }
   }
 
-  document.addEventListener("astro:before-swap", () => {
-    if (observer) {
-      observer.disconnect();
-    }
-  });
-  document.addEventListener("astro:after-swap", applyTheme);
   applyTheme();
 </script>
