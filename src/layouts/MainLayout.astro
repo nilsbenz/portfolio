@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header.astro";
 import MainHead from "@/components/meta/MainHead.astro";
 import { getLang } from "@/i18n/utils";
 import { cn } from "@/lib/utils";
+import { SimpleAnalytics } from "astro-simpleanalytics-plugin";
 
 interface Props {
   title?: string | undefined;
@@ -38,5 +39,6 @@ const lang = getLang(Astro.currentLocale, Astro.url);
       <slot />
     </div>
     <Footer><BottomNavigation /></Footer>
+    <SimpleAnalytics />
   </body>
 </html>
