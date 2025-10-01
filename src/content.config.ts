@@ -10,6 +10,7 @@ const projects = defineCollection({
       description: z.string(),
       thumbnail: image(),
       featured: z.boolean(),
+      ogImage: image(),
     }),
 });
 

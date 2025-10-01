@@ -11,15 +11,16 @@ interface Props {
   title?: string | undefined;
   description?: string | undefined;
   className?: string | undefined;
+  image?: string | undefined;
 }
 
-const { title, description, className } = Astro.props;
+const { title, description, className, image } = Astro.props;
 const lang = getLang(Astro.currentLocale, Astro.url);
 ---
 
 <html lang={lang}>
   <head>
-    <MainHead title={title} description={description} />
+    <MainHead title={title} description={description} image={image} />
   </head>
   <body class="flex min-h-svh flex-col">
     <Header />
