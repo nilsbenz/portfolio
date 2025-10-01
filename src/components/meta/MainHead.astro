@@ -68,7 +68,7 @@ const {
   function applyTheme() {
     const isDark = getThemePreference() === "dark";
     document.documentElement.classList[isDark ? "add" : "remove"]("dark");
-    const themeColor = dark ? "#0f0f0f" : "#F2F2F2";
+    const themeColor = isDark ? "#0f0f0f" : "#F2F2F2";
     document
       .querySelector("meta[name=theme-color]")
       ?.setAttribute("content", themeColor);
