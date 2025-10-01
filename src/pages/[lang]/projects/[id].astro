@@ -35,7 +35,11 @@ const project = Astro.props;
 const { Content } = await render(project);
 ---
 
-<MainLayout className="max-w-2xl">
+<MainLayout
+  className="max-w-2xl"
+  title={`Nils Benz | ${project.data.title}`}
+  description={project.data.description}
+>
   <div class="flex items-center gap-3">
     {
       project.data.icon && (

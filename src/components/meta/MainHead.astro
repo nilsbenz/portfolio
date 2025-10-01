@@ -6,13 +6,17 @@ import "@fontsource-variable/outfit";
 interface Props {
   title?: string | undefined;
   description?: string | undefined;
+  noIndex?: boolean | undefined;
 }
 
 const lang = getLang(Astro.currentLocale, Astro.url);
 const t = useTranslations(lang);
 
-const { title = "Nils Benz", description = t("meta.description") } =
-  Astro.props;
+const {
+  title = "Nils Benz",
+  description = t("meta.description"),
+  noIndex = false,
+} = Astro.props;
 ---
 
 <meta charset="UTF-8" />
@@ -23,6 +27,8 @@ const { title = "Nils Benz", description = t("meta.description") } =
 <title>{title}</title>
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+{noIndex && <meta name="robots" content="noindex" />}
 
 <script is:inline>
   let observer = null;

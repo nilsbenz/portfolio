@@ -17,7 +17,7 @@ const lang = getLang(Astro.currentLocale, Astro.url);
 
 <html lang={lang}>
   <head>
-    <MainHead title={title} description={description} />
+    <MainHead title={title} description={description} noIndex />
   </head>
   <body class="flex min-h-svh flex-col">
     <div class="dotted-bg absolute top-0 -z-10 h-[40vh] w-full overflow-clip">

@@ -28,7 +28,7 @@ const projects = Object.values(translatedProjects)
   .sort(sortProjects);
 ---
 
-<MainLayout className="space-y-8">
+<MainLayout className="space-y-8" title={`Nils Benz | ${t("projects.title")}`}>
   <h2 class="title">{t("projects.title")}</h2>
   <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
     {
