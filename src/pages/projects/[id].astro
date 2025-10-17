@@ -1,23 +1,82 @@
 ---
+import BulletList from "@/components/content/BulletList.astro";
+import Heading1 from "@/components/content/Heading1.astro";
+import Heading2 from "@/components/content/Heading2.astro";
+import ContentImage from "@/components/content/Image.astro";
+import Link from "@/components/content/Link.astro";
+import Paragraph from "@/components/content/Paragraph.astro";
+import { languages } from "@/i18n/ui";
 import { getLang } from "@/i18n/utils";
-import { getCollection } from "astro:content";
-
-const lang = getLang(Astro.currentLocale, Astro.url);
+import MainLayout from "@/layouts/MainLayout.astro";
+import { Image } from "astro:assets";
+import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
-  const projects = (await getCollection("projects")).filter((project) =>
-    project.id.startsWith("de/"),
+  const projects = await getCollection("projects");
+  const projectIds = Array.from(
+    new Set(projects.map((project) => project.id.split("/")[1])),
   );
-  return projects.map((project) => {
-    const id = project.id.split("/")[1];
+  return projectIds.flatMap((projectId) => {
     return {
-      params: { id },
-      props: { id },
+      params: { id: projectId },
+      props: {
+        projects: Object.fromEntries(
+          Object.keys(languages).map((lang) => {
+            const project = projects.find(
+              (project) => project.id === `${lang}/${projectId}`,
+            );
+            if (!project) {
+              throw new Error(
+                `Project not found for lang "${lang}" and id "${projectId}"`,
+              );
+            }
+            return [lang, project];
+          }),
+        ) as unknown as Record<
+          keyof typeof languages,
+          (typeof projects)[number]
+        >,
+      },
     };
   });
 }
 
-const { id } = Astro.props;
+const lang = getLang(Astro.currentLocale, Astro.url);
+
+const project = Astro.props.projects[lang];
+const { Content } = await render(project);
 ---
 
-<meta http-equiv="refresh" content={`0;url=/${lang}/projects/${id}`} />
+<MainLayout
+  className="max-w-2xl"
+  title={`Nils Benz | ${project.data.title}`}
+  description={project.data.description}
+  image={project.data.ogImage.src}
+>
+  <div class="flex items-center gap-3">
+    {
+      project.data.icon && (
+        <Image src={project.data.icon} alt="" class="size-9" />
+      )
+    }
+    <h2 class="title">{project.data.title}</h2>
+  </div>
+  <p class="text-muted-foreground my-2 text-lg">{project.data.description}</p>
+  <div class="-mx-4 my-8 transition-[margin] md:-mx-12">
+    <Image
+      src={project.data.thumbnail}
+      alt={project.data.title}
+      class="aspect-video w-full object-cover"
+    />
+  </div>
+  <Content
+    components={{
+      h1: Heading1,
+      h2: Heading2,
+      p: Paragraph,
+      a: Link,
+      ul: BulletList,
+      img: ContentImage,
+    }}
+  />
+</MainLayout>

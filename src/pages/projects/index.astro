@@ -4,6 +4,7 @@ import { getLang, useTranslations } from "@/i18n/utils";
 import MainLayout from "@/layouts/MainLayout.astro";
 import { sortProjects } from "@/lib/projects";
 import { getCollection } from "astro:content";
+import { getRelativeLocaleUrl } from "astro:i18n";
 
 const lang = getLang(Astro.currentLocale, Astro.url);
 const t = useTranslations(lang);
@@ -34,7 +35,10 @@ const projects = Object.values(translatedProjects)
     {
       projects.map((project) => (
         <CardLink
-          href={`/${lang}/projects/${project.id.split("/")[1]}`}
+          href={getRelativeLocaleUrl(
+            lang,
+            `/projects/${project.id.split("/")[1]}/`,
+          )}
           image={project.data.thumbnail}
           title={project.data.title}
           icon={project.data.icon}

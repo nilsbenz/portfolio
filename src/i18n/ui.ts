@@ -3,7 +3,7 @@ export const languages = {
   en: "English",
 };
 
-export const defaultLang = "de";
+export const defaultLang = "de" satisfies keyof typeof languages;
 
 export const ui: Record<keyof typeof languages, Record<string, string>> = {
   de: {
