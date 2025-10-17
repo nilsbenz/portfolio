@@ -11,80 +11,69 @@ const lang = getLang(Astro.currentLocale, Astro.url);
 const t = useTranslations(lang);
 ---
 
-<header class="w-full text-sm font-semibold">
+<header
+  class="fixed top-2 right-[calc(env(safe-area-inset-right,_0px)_+_0.5rem)] left-[calc(env(safe-area-inset-left,_0px)_+_0.5rem)] z-30 mx-auto flex h-14 max-w-5xl items-center justify-between pr-1.5 pl-2.5"
+>
   <div
-    class="fixed top-0 right-0 left-0 z-30 mx-auto flex h-14 w-full items-center justify-between pr-1.5 pb-0.5 pl-2.5 lg:max-w-5xl"
+    id="header-bg"
+    class="liquid-glass-border ease-out-expo bg-glass absolute inset-0 -z-10 rounded-full opacity-0 backdrop-blur-lg [&.loaded]:transition-all [&.loaded]:duration-700"
   >
-    <div
-      id="header-bg"
-      class="liquid-glass-border ease-out-expo border-foreground/10 bg-glass absolute -top-0.5 -right-0.5 bottom-0 -left-0.5 -z-10 backdrop-blur-lg lg:rounded-b-[1.625rem] [&.loaded]:transition-all [&.loaded]:duration-700"
-    >
-    </div>
-    <a
-      href={getRelativeLocaleUrl(lang, "/")}
-      class="focus-visible:ring-ring/50 flex h-9 items-center gap-0.5 truncate rounded-full pr-2.5 pl-1 focus:outline-none focus-visible:ring-3"
-    >
-      <ChevronRightIcon className="text-primary size-5 shrink-0 stroke-3" />
-      <h1 class="truncate text-lg font-semibold">nilsbenz</h1>
-    </a>
-    <nav class="flex items-center gap-4">
-      <ul class="hidden items-center gap-1 md:flex">
-        <li>
-          <a
-            href={getRelativeLocaleUrl(lang, "/")}
-            class={cn(
-              buttonVariants({ variant: "ghost" }),
-              "hover:bg-accent/60",
-            )}
-          >
-            {t("nav.home")}
-          </a>
-        </li>
-        <li>
-          <a
-            href={getRelativeLocaleUrl(lang, "/projects/")}
-            class={cn(
-              buttonVariants({ variant: "ghost" }),
-              "hover:bg-accent/60",
-            )}
-          >
-            {t("nav.projects")}
-          </a>
-        </li>
-        <li>
-          <a
-            href={getRelativeLocaleUrl(lang, "/about/")}
-            class={cn(
-              buttonVariants({ variant: "ghost" }),
-              "hover:bg-accent/60",
-            )}
-          >
-            {t("nav.about")}
-          </a>
-        </li>
-      </ul>
-      <div
-        id="header-controls"
-        class="liquid-glass-border ease-out-expo flex items-center gap-0.5 rounded-full p-[3px] transition-all duration-700"
-      >
-        <LanguageToggle />
-        <ThemeToggle />
-        <a
-          href="https://github.com/nilsbenz/portfolio"
-          target="_blank"
-          class={cn(
-            buttonVariants({ variant: "ghost", size: "icon" }),
-            "hover:bg-accent/60",
-          )}
-          aria-label="GitHub"
-        >
-          <GithubIcon />
-        </a>
-      </div>
-    </nav>
   </div>
-  <div class="h-14 w-full"></div>
+  <a
+    href={getRelativeLocaleUrl(lang, "/")}
+    class="focus-visible:ring-ring/50 flex h-9 items-center gap-0.5 truncate rounded-full pr-2.5 pl-1 focus:outline-none focus-visible:ring-3"
+  >
+    <ChevronRightIcon className="text-primary size-5 shrink-0 stroke-3" />
+    <h1 class="truncate text-lg font-semibold">nilsbenz</h1>
+  </a>
+  <nav class="flex items-center gap-4">
+    <ul class="hidden items-center gap-1 md:flex">
+      <li>
+        <a
+          href={getRelativeLocaleUrl(lang, "/")}
+          class={cn(buttonVariants({ variant: "ghost" }), "hover:bg-accent/60")}
+        >
+          {t("nav.home")}
+        </a>
+      </li>
+      <li>
+        <a
+          href={getRelativeLocaleUrl(lang, "/projects/")}
+          class={cn(buttonVariants({ variant: "ghost" }), "hover:bg-accent/60")}
+        >
+          {t("nav.projects")}
+        </a>
+      </li>
+      <li>
+        <a
+          href={getRelativeLocaleUrl(lang, "/about/")}
+          class={cn(buttonVariants({ variant: "ghost" }), "hover:bg-accent/60")}
+        >
+          {t("nav.about")}
+        </a>
+      </li>
+    </ul>
+    <div
+      id="header-controls"
+      class="liquid-glass-border ease-out-expo flex items-center gap-0.5 rounded-full p-[3px] transition-all duration-700"
+    >
+      <LanguageToggle />
+      <ThemeToggle />
+      <a
+        href="https://github.com/nilsbenz/portfolio"
+        target="_blank"
+        class={cn(
+          buttonVariants({ variant: "ghost", size: "icon" }),
+          "hover:bg-accent/60",
+        )}
+        aria-label="GitHub"
+      >
+        <GithubIcon />
+      </a>
+    </div>
+  </nav>
 </header>
+<div class="mt-2 h-14"></div>
 
 <script is:inline>
   let handleScroll = undefined;
@@ -101,12 +90,14 @@ const t = useTranslations(lang);
     const controlsElement = document.getElementById("header-controls");
 
     bgElement.style.transform = `translateY(${isScrolled() ? 0 : "-100%"})`;
+    bgElement.style.opacity = isScrolled() ? "1" : "0";
     controlsElement.classList.add(
       ...(isScrolled() ? scrolledControlsClasses : initialControlsClasses),
     );
 
     handleScroll = function () {
       bgElement.style.transform = `translateY(${isScrolled() ? 0 : "-100%"})`;
+      bgElement.style.opacity = isScrolled() ? "1" : "0";
       if (isScrolled()) {
         controlsElement.classList.remove(...initialControlsClasses);
         controlsElement.classList.add(...scrolledControlsClasses);

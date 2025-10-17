@@ -33,46 +33,34 @@ const activeItem = navItems
   .sort((a, b) => b.path.length - a.path.length)[0]?.path;
 ---
 
-<div
-  class="fixed top-auto right-0 bottom-0 left-0 isolate z-30 pt-2 pr-[calc(env(safe-area-inset-right,_0px)_+_1.25rem)] pb-5 pl-[calc(env(safe-area-inset-left,_0px)_+_1.25rem)] md:hidden"
+<nav
+  class="fixed right-[calc(env(safe-area-inset-right,_0px)_+_1.25rem)] bottom-5 left-[calc(env(safe-area-inset-left,_0px)_+_1.25rem)] z-30 mx-auto flex gap-2 sm:max-w-sm md:hidden"
 >
-  <nav class="mx-auto flex w-full gap-2 sm:max-w-sm">
-    <ul
-      class="liquid-glass-border bg-glass ease-out-expo mx-auto flex h-14 grow items-center rounded-full p-[3px] shadow-lg backdrop-blur transition-colors duration-700"
-    >
-      {
-        navItems.map((element) => {
-          const isActive = activeItem === element.path;
-          return (
-            <li class="-mx-1 h-full flex-1 first:ml-0 last:mr-0">
-              <a
-                href={element.path}
-                class={cn(
-                  "focus-visible:ring-ring/50 ease-out-expo flex h-full flex-col items-center justify-center gap-0.5 rounded-full px-3 text-xs font-semibold transition-colors duration-700 focus:outline-none focus-visible:ring-3",
-                  isActive &&
-                    "liquid-glass-border bg-foreground/5 dark:bg-foreground/7.5 text-primary font-semibold",
-                )}
-              >
-                <element.icon
-                  className={cn(
-                    "stroke-2.25 size-5",
-                    isActive && "stroke-2.75",
-                  )}
-                />
-                {t(element.label)}
-              </a>
-            </li>
-          );
-        })
-      }
-    </ul>
-  </nav>
-  <div
-    class="from-background/40 absolute inset-0 -z-10 bg-gradient-to-t backdrop-blur-xs"
-    style={{
-      maskImage: "linear-gradient(to top, black 1.25rem, transparent 100%)",
-    }}
+  <ul
+    class="liquid-glass-border bg-glass ease-out-expo mx-auto flex h-14 grow items-center rounded-full p-[3px] shadow-lg backdrop-blur transition-colors duration-700"
   >
-  </div>
-</div>
+    {
+      navItems.map((element) => {
+        const isActive = activeItem === element.path;
+        return (
+          <li class="-mx-1 h-full flex-1 first:ml-0 last:mr-0">
+            <a
+              href={element.path}
+              class={cn(
+                "focus-visible:ring-ring/50 ease-out-expo flex h-full flex-col items-center justify-center gap-0.5 rounded-full px-3 text-xs font-semibold transition-colors duration-700 focus:outline-none focus-visible:ring-3",
+                isActive &&
+                  "liquid-glass-border bg-foreground/5 dark:bg-foreground/7.5 text-primary font-semibold",
+              )}
+            >
+              <element.icon
+                className={cn("stroke-2.25 size-5", isActive && "stroke-2.75")}
+              />
+              {t(element.label)}
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</nav>
 <div class="mb-5 h-14 w-full md:hidden"></div>

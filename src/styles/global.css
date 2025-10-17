@@ -187,16 +187,16 @@
       8px 32px,
       32px 8px;
     background-position:
-      -21px 11px,
-      -25px 15px;
+      -13px 19px,
+      -17px 23px;
     transition-property: color, background-position;
     transition-duration: 700ms;
     transition-timing-function: var(--ease-out-expo);
 
     @variant dark {
       background-position:
-        -21px -21px,
-        -25px -17px;
+        -13px -13px,
+        -17px -9px;
     }
   }
 
