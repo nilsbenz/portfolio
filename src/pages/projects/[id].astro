@@ -1,9 +1,12 @@
 ---
+import { getLang } from "@/i18n/utils";
 import { getCollection } from "astro:content";
+
+const lang = getLang(Astro.currentLocale, Astro.url);
 
 export async function getStaticPaths() {
   const projects = (await getCollection("projects")).filter((project) =>
-    project.id.startsWith("de/")
+    project.id.startsWith("de/"),
   );
   return projects.map((project) => {
     const id = project.id.split("/")[1];
@@ -17,4 +20,4 @@ export async function getStaticPaths() {
 const { id } = Astro.props;
 ---
 
-<meta http-equiv="refresh" content={`0;url=/de/projects/${id}`} />
+<meta http-equiv="refresh" content={`0;url=/${lang}/projects/${id}`} />
