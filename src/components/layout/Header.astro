@@ -89,14 +89,14 @@ const t = useTranslations(lang);
     const bgElement = document.getElementById("header-bg");
     const controlsElement = document.getElementById("header-controls");
 
-    bgElement.style.transform = `translateY(${isScrolled() ? 0 : "-100%"})`;
+    bgElement.style.transform = `translateY(${isScrolled() ? 0 : "-0.5rem"})`;
     bgElement.style.opacity = isScrolled() ? "1" : "0";
     controlsElement.classList.add(
       ...(isScrolled() ? scrolledControlsClasses : initialControlsClasses),
     );
 
     handleScroll = function () {
-      bgElement.style.transform = `translateY(${isScrolled() ? 0 : "-100%"})`;
+      bgElement.style.transform = `translateY(${isScrolled() ? 0 : "-0.5rem"})`;
       bgElement.style.opacity = isScrolled() ? "1" : "0";
       if (isScrolled()) {
         controlsElement.classList.remove(...initialControlsClasses);
