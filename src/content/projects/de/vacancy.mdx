@@ -1,0 +1,23 @@
+---
+title: "Auswertung Fragebogen"
+icon: "@/assets/icons/vacancy.svg"
+description: "Auswertung eines Fragebogens zum Projekt «Performatives Haus» der Professur Mosayebi"
+thumbnail: "@/assets/projects/vacancy/thumbnail-de.png"
+ogImage: "@/assets/projects/vacancy/og-image-de.png"
+featured: false
+released: 2022-08-18
+website: "https://mosayebi.arch.ethz.ch/vacancy/"
+---
+import Technologies from "@/components/projects/Technologies.astro";
+
+Für die Professur Mosayebi der ETH Zürich habe ich die Auswertung und Visualisierung eines Fragebogens zum Projekt «Performatives Haus» übernommen. Die Website ist unter [mosayebi.arch.ethz.ch/vacancy](https://mosayebi.arch.ethz.ch/vacancy/) zu finden.
+
+Beim Forschungsprojekt bewohnten Testpersonen die mit drehbaren Elementen ausgestattete Wohnung auf dem Dach eines ETH-Gebäudes für jeweils eine Woche. Drehbar ausgestaltet waren eine Wand, ein Schrank und zwei Lampen. Es wurden Fragebögen ausgefüllt und Sensordaten gesammelt.
+
+Die Antworten der Testpersonen wurden in eine JSON-Datei exportiert, die ich dann mit einer React-App visualisiert habe. Für die Diagramme habe ich Chart.js verwendet, das UI-Design basiert auf den Komponenten von Material UI.
+
+<Technologies used={["react", "vite", "chartjs", "mui" ]} />
+
+Die Website bietet verschiedene Filtermöglichkeiten, um die Testpersonen zu gruppieren und so die Antworten zu vergleichen.
+
+![Ausschnitt aus der Auswertung](@/assets/projects/vacancy/vacancy.png)

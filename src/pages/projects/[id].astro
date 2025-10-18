@@ -10,6 +10,7 @@ import { getLang } from "@/i18n/utils";
 import MainLayout from "@/layouts/MainLayout.astro";
 import { Image } from "astro:assets";
 import { getCollection, render } from "astro:content";
+import { Globe2Icon, RocketIcon } from "lucide-react";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
@@ -62,6 +63,25 @@ const { Content } = await render(project);
     <h2 class="title">{project.data.title}</h2>
   </div>
   <p class="text-muted-foreground my-2 text-lg">{project.data.description}</p>
+  <div class="flex flex-wrap gap-x-8 gap-y-1">
+    <p class="flex items-center gap-1.5 text-sm font-semibold">
+      <RocketIcon className="text-muted-foreground size-4" strokeWidth={2.5} />
+      {
+        new Intl.DateTimeFormat(lang, {
+          year: "numeric",
+          month: "long",
+        }).format(project.data.released)
+      }
+    </p>
+    <a
+      href={project.data.website}
+      target="_blank"
+      class="focus-visible:ring-ring/50 ease-out-expo flex items-center gap-1.5 rounded text-sm font-semibold transition-shadow duration-700 focus:outline-none focus-visible:ring-3"
+    >
+      <Globe2Icon className="text-muted-foreground size-4" strokeWidth={2.5} />
+      {project.data.website.replace(/^https?:\/\//, "")}
+    </a>
+  </div>
   <div class="-mx-4 my-8 transition-[margin] md:-mx-12">
     <Image
       src={project.data.thumbnail}

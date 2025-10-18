@@ -1,0 +1,23 @@
+---
+title: "Survey evaluation"
+icon: "@/assets/icons/vacancy.svg"
+description: "Evaluation of a questionnaire on the “vacancy – no vacancy” project by Professor Mosayebi"
+thumbnail: "@/assets/projects/vacancy/thumbnail-en.png"
+ogImage: "@/assets/projects/vacancy/og-image-en.png"
+featured: false
+released: 2022-08-18
+website: "https://mosayebi.arch.ethz.ch/vacancy/"
+---
+import Technologies from "@/components/projects/Technologies.astro";
+
+For the Mosayebi professorship at ETH Zurich, I was responsible for evaluating and visualizing a questionnaire on the “vacancy – no vacancy” project. The website can be found at [mosayebi.arch.ethz.ch/vacancy](https://mosayebi.arch.ethz.ch/vacancy/).
+
+In the research project, test subjects lived in the apartment equipped with rotating elements on the roof of an ETH building for one week at a time. A wall, a cupboard, and two lamps were designed to rotate. Questionnaires were completed and sensor data was collected.
+
+The test subjects' responses were exported to a JSON file, which I then visualized using a React app. I used Chart.js for the diagrams, and the UI design is based on Material UI components.
+
+<Technologies used={["react", "vite", "chartjs", "mui" ]} />
+
+The website offers various filter options for grouping test subjects and comparing their answers.
+
+![Excerpt from the evaluation](@/assets/projects/vacancy/vacancy.png)

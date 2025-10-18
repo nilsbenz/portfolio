@@ -11,6 +11,8 @@ const projects = defineCollection({
       thumbnail: image(),
       featured: z.boolean(),
       ogImage: image(),
+      released: z.date(),
+      website: z.string().url(),
     }),
 });
 

@@ -1,4 +1,11 @@
-const sortOrder = ["bstell-online", "kitesurf-adventure", "kmt25", "web-dojo"];
+const sortOrder = [
+  "bstell-online",
+  "kitesurf-adventure",
+  "kmt25",
+  "web-dojo",
+  "vacancy",
+  "electro-control",
+];
 
 export function sortProjects(a: { id: string }, b: { id: string }) {
   const aIndex = sortOrder.indexOf(a.id.split("/")[1]);

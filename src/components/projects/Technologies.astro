@@ -1,12 +1,16 @@
 ---
 import astroDark from "@/assets/icons/astro-dark.svg";
 import astroLight from "@/assets/icons/astro-light.svg";
+import chartjs from "@/assets/icons/chartjs.svg";
 import firebase from "@/assets/icons/firebase.svg";
+import html from "@/assets/icons/html.svg";
 import motionDark from "@/assets/icons/motion-dark.svg";
 import motionLight from "@/assets/icons/motion-light.svg";
+import mui from "@/assets/icons/mui.svg";
 import nextjs from "@/assets/icons/nextjs.svg";
 import reactDark from "@/assets/icons/react-dark.svg";
 import reactLight from "@/assets/icons/react-light.svg";
+import sass from "@/assets/icons/sass.svg";
 import shadcnDark from "@/assets/icons/shadcn-dark.svg";
 import shadcnLight from "@/assets/icons/shadcn-light.svg";
 import strapi from "@/assets/icons/strapi.svg";
@@ -30,6 +34,10 @@ const Technology = {
   ShadCN: "shadcn",
   Strapi: "strapi",
   NextJS: "nextjs",
+  ChartJS: "chartjs",
+  MaterialUI: "mui",
+  HTML: "html",
+  SASS: "sass",
 } as const;
 type Technology = (typeof Technology)[keyof typeof Technology];
 
@@ -84,6 +92,22 @@ const assets: Record<
   [Technology.NextJS]: {
     label: "Next.js",
     icon: nextjs,
+  },
+  [Technology.ChartJS]: {
+    label: "Chart.js",
+    icon: chartjs,
+  },
+  [Technology.MaterialUI]: {
+    label: "Material UI",
+    icon: mui,
+  },
+  [Technology.HTML]: {
+    label: "HTML",
+    icon: html,
+  },
+  [Technology.SASS]: {
+    label: "SASS",
+    icon: sass,
   },
 };
 
