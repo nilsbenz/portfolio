@@ -3,7 +3,7 @@ import FilmFooter from "@/components/layout/FilmFooter.astro";
 import MainHead from "@/components/meta/MainHead.astro";
 import { getLang } from "@/i18n/utils";
 import { cn } from "@/lib/utils";
-import { SimpleAnalytics } from "astro-simpleanalytics-plugin";
+import { CloudflareAnalytics } from "astro-cloudflare-analytics";
 
 interface Props {
   title?: string | undefined;
@@ -39,6 +39,6 @@ const lang = getLang(Astro.currentLocale, Astro.url);
       <slot />
     </div>
     <FilmFooter />
-    <SimpleAnalytics />
+    <CloudflareAnalytics token="a4bc53c5a3fa433e85dbb60f859ea8d6" />
   </body>
 </html>
